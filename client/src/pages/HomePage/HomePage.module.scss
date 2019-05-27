@@ -1,0 +1,11 @@
+@import "../../sass/mixins";
+
+.container{
+  min-height: 100vh;
+  .imageSection{
+    @include flex-row-center-center;
+    background: url("../../images/home.jpg") no-repeat;
+    background-size: cover;
+    padding: 80px 0 48px 0;
+  }
+}

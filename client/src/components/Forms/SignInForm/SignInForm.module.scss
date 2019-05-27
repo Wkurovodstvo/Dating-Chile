@@ -1,0 +1,45 @@
+@import "../../../sass/mixins";
+@import "../../../sass/variables";
+
+.container{
+  @include flex-col-between-start;
+  height: 100%;
+  margin-left: 450px;
+  width: 500px;
+  padding: 0 15px;
+  h6{
+    margin: 10px 0 3px 0;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    padding-left: 4px;
+  }
+  .row{
+    @include flex-row-between-start;
+    width: 100%;
+  }
+  .column{
+    @include flex-col-center-start;
+    padding: 0 4px;
+    flex: 1;
+    >:last-child{
+      font-size: 12px;
+      line-height: 18px;
+    }
+  }
+  .submitButton{
+    height: 100%;
+    flex: 1;
+    padding-left: 4px;
+    button{
+      width: 100%;
+      min-width: $inputMinWidth;
+      background-color: transparent;
+      border: 2px solid white;
+      border-radius: 3px;
+      color: white;
+      padding: 1.5px 0 2px 0;
+      line-height: normal;
+    }
+  }
+}

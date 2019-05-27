@@ -1,0 +1,14 @@
+@import "../../../sass/mixins";
+
+.container{
+  @include flex-row-between-start;
+  .logoArea{
+    @include flex-col-start-start;
+    h6{
+      margin-bottom: 5px;
+      font-size: 19px;
+      line-height: 26px;
+      padding-left: 10px;
+    }
+  }
+}
