@@ -9,7 +9,6 @@ const initialState = {
     nickname: null,
     email: null,
     password: null,
-    birthDate: null,
     education: null,
     children: null,
     commune: null,
@@ -20,7 +19,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case ACTION.REGISTRATION_SET_OVERVIEW: {
+        case ACTION.USER_REGISTRATION_SET_OVERVIEW: {
             return {
                 ...state,
                 ...action.fields,

@@ -16,8 +16,9 @@ const ReduxInput = props => {
 
     return (
         <div className={_.isEqual(orientation, HORIZONTAL) ? style.horizontalContainer : style.verticalContainer}>
-            <label>{label}</label>
+            <label htmlFor={name}>{label}</label>
             <Field name={name}
+                   id={name}
                    type={type}
                    placeholder={placeholder}
                    component={component}

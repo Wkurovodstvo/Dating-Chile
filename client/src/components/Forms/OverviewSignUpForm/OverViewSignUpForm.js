@@ -4,14 +4,9 @@ import {reduxForm} from 'redux-form';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import ReduxInput from "../../Inputs/ReduxInput";
-import {registerOverviewAction} from "../../../actions/actionCreator";
+import {registrationOverviewAction} from "../../../actions/actionCreator";
 import {AGE_OPTIONS, GENDER_OPTIONS, PURPOSE_OPTIONS, REGION_OPTIONS, INPUT_SIZE} from "../../../constants/constants";
 import overviewValidator from "../../../utils/schemas/yupOverviewValidator";
-
-/**
- * Validation scheme fields for redux-form
- */
-export const schemeFields = Object.keys(overviewValidator.fields);
 
 /**
  * Form for sign in into account
@@ -20,7 +15,7 @@ const OverViewSignUpForm = props => {
 
     const {LARGE} = INPUT_SIZE;
 
-    const handleSubmit = async () => {
+    const handleSubmitClick = async () => {
         try {
             const {fields, registerOverview} = props;
             await overviewValidator.validate(fields.values);
@@ -37,19 +32,35 @@ const OverViewSignUpForm = props => {
             </div>
             <div className={style.row}>
                 <div className={style.col}>
-                    <ReduxInput component={"select"} name={"gender"} values={GENDER_OPTIONS} label={"Gender"} morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"gender"}
+                                values={GENDER_OPTIONS}
+                                label={"Soy"}
+                                morph={LARGE}/>
                 </div>
                 <div className={style.col}>
-                    <ReduxInput component={"select"} name={"purpose"} values={PURPOSE_OPTIONS} label={"Purpose"} morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"purpose"}
+                                values={PURPOSE_OPTIONS}
+                                label={"y Busco"}
+                                morph={LARGE}/>
                 </div>
                 <div className={style.col}>
-                    <ReduxInput component={"select"} name={"age"} values={AGE_OPTIONS} label={"Age"} morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"age"}
+                                values={AGE_OPTIONS}
+                                label={"entre"}
+                                morph={LARGE}/>
                 </div>
                 <div className={style.col}>
-                    <ReduxInput component={"select"} name={"region"} values={REGION_OPTIONS} label={"Location"} morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"region"}
+                                values={REGION_OPTIONS}
+                                label={"que vivan en"}
+                                morph={LARGE}/>
                 </div>
-                <div className={style.col} onClick={handleSubmit}>
-                    <div className={style.submitButton}>Submit</div>
+                <div className={style.col} onClick={handleSubmitClick}>
+                    <div className={style.submitButton}>Siguiente</div>
                 </div>
             </div>
             <div className={style.row}>
@@ -66,7 +77,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    registerOverview: (fields) => dispatch(registerOverviewAction(fields))
+    registerOverview: (fields) => dispatch(registrationOverviewAction(fields))
 });
 
 OverViewSignUpForm.propTypes = {
@@ -75,6 +86,5 @@ OverViewSignUpForm.propTypes = {
 };
 
 export default reduxForm({
-    form: 'overViewForm',
-    schemeFields
+    form: 'overViewForm'
 })(connect(mapStateToProps, mapDispatchToProps)(OverViewSignUpForm));

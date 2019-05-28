@@ -4,16 +4,11 @@ import {reduxForm} from 'redux-form';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import ReduxInput from "../../Inputs/ReduxInput";
-import {registerOverviewAction} from "../../../actions/actionCreator";
+import {registrationAction} from "../../../actions/actionCreator";
 import {REGION_OPTIONS, EDUCATION_OPTIONS, COMMUNE_OPTIONS,
     INPUT_ORIENTATION, CHILDREN_OPTIONS, INPUT_SIZE, MONTH_OPTIONS} from "../../../constants/constants";
 import registrationValidator from "../../../utils/schemas/yupRegistrationValidator";
 import {DateGenerator} from "../../../utils/DateGenerator";
-
-/**
- * Validation scheme fields for redux-form
- */
-export const schemeFields = Object.keys(registrationValidator.fields);
 
 /**
  * Form for sign in into account
@@ -21,18 +16,21 @@ export const schemeFields = Object.keys(registrationValidator.fields);
 const UserDataSignUpForm = props => {
 
     useEffect(() => {
-        const {initialize, region} = props;
-        initialize({region});
+        const {initialize, registration:{region}} = props;
+        initialize({
+            terms: false,
+            region
+        });
     },[]);
 
     const {HORIZONTAL} = INPUT_ORIENTATION;
     const {LARGE} = INPUT_SIZE;
 
-    const handleSubmit = async () => {
+    const handleRegistrationClick = async () => {
         try {
-            const {fields, registerUser} = props;
+            const {fields, registerUser, registration} = props;
             await registrationValidator.validate(fields.values);
-            registerUser(fields.values);
+            registerUser({...registration, ...fields.values});
         } catch (e) {
             console.log(e);
         }
@@ -41,23 +39,61 @@ const UserDataSignUpForm = props => {
     return (
         <div className={style.container}>
             <div className={style.col}>
-                <ReduxInput component={"input"} name={"nickname"} label={"Account name"} morph={LARGE}/>
-                <ReduxInput component={"input"} name={"password"} label={"Password"} morph={LARGE}/>
-                <ReduxInput component={"select"} name={"education"} values={EDUCATION_OPTIONS} label={"Education level"} morph={LARGE}/>
-                <ReduxInput component={"select"} name={"region"} values={REGION_OPTIONS} label={"Region"} morph={LARGE}/>
-                <ReduxInput component={"input"} type={"checkbox"} name={"terms"} label={"I accept terms of use"} orientation={HORIZONTAL}/>
+                <ReduxInput component={"input"}
+                            name={"nickname"}
+                            label={"Nombre de Usuario"}
+                            morph={LARGE}/>
+                <ReduxInput component={"input"}
+                            name={"password"}
+                            label={"Clave"}
+                            morph={LARGE}/>
+                <ReduxInput component={"select"}
+                            name={"education"}
+                            values={EDUCATION_OPTIONS}
+                            label={"Nivel Educación"}
+                            morph={LARGE}/>
+                <ReduxInput component={"select"}
+                            name={"region"}
+                            values={REGION_OPTIONS}
+                            label={"Región"}
+                            morph={LARGE}/>
+                <ReduxInput component={"input"}
+                            type={"checkbox"}
+                            name={"terms"}
+                            label={"Acepto Condiciones de uso"}
+                            orientation={HORIZONTAL}/>
             </div>
             <div className={style.col}>
-                <ReduxInput component={"input"} name={"email"} label={"Email"} morph={LARGE}/>
-                <label>Birth date</label>
+                <ReduxInput component={"input"}
+                            name={"email"}
+                            label={"Email"}
+                            morph={LARGE}/>
+                <label>Nacimiento</label>
                 <div className={style.row}>
-                    <ReduxInput component={"select"} name={"day"} values={new DateGenerator().generateDays()} morph={LARGE}/>
-                    <ReduxInput component={"select"} name={"month"} values={MONTH_OPTIONS} morph={LARGE}/>
-                    <ReduxInput component={"select"} name={"year"} values={new DateGenerator().generateYears()} morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"day"}
+                                values={new DateGenerator().generateDays()}
+                                morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"month"}
+                                values={MONTH_OPTIONS}
+                                morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"year"}
+                                values={new DateGenerator().generateYears()}
+                                morph={LARGE}/>
                 </div>
-                <ReduxInput component={"select"} name={"children"} values={CHILDREN_OPTIONS} label={"Children"} morph={LARGE}/>
-                <ReduxInput component={"select"} name={"commune"} values={COMMUNE_OPTIONS} label={"Commune"} morph={LARGE}/>
-                <div className={style.submitButton} onClick={handleSubmit}>Submit</div>
+                <ReduxInput component={"select"}
+                            name={"children"}
+                            values={CHILDREN_OPTIONS}
+                            label={"Hijos"}
+                            morph={LARGE}/>
+                <ReduxInput component={"select"}
+                            name={"commune"}
+                            values={COMMUNE_OPTIONS}
+                            label={"Comuna"}
+                            morph={LARGE}/>
+                <div className={style.submitButton} onClick={handleRegistrationClick}>Submit</div>
             </div>
         </div>
     );
@@ -66,12 +102,12 @@ const UserDataSignUpForm = props => {
 
 const mapStateToProps = (state) => {
     const fields = state.form.userDataForm;
-    const {region} = state.registrationReducer;
-    return {fields, region};
+    const registration = state.registrationReducer;
+    return {fields, registration};
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    registerUser: (fields) => dispatch(registerOverviewAction(fields))
+    registerUser: (fields) => dispatch(registrationAction(fields))
 });
 
 UserDataSignUpForm.propTypes = {
@@ -80,6 +116,5 @@ UserDataSignUpForm.propTypes = {
 };
 
 export default reduxForm({
-    form: 'userDataForm',
-    schemeFields,
+    form: 'userDataForm'
 })(connect(mapStateToProps, mapDispatchToProps)(UserDataSignUpForm));

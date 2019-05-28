@@ -2,6 +2,9 @@ import {PASSWORD_LENGTH} from "../../constants/constants";
 const yup = require('yup');
 
 const schemeYup = yup.object().shape({
+    terms: yup
+        .boolean()
+        .oneOf([true], 'Must Accept Terms and Conditions'),
     year: yup
         .string()
         .required('Empty birth year field!'),

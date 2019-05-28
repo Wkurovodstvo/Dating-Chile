@@ -4,10 +4,6 @@ const yup = require('yup');
 
 
 const schemeYup = yup.object().shape({
-    email: yup
-        .string()
-        .email('Invalid email structure!')
-        .required('Empty email field!'),
     password: yup
         .string()
         .required('Empty password field!')
@@ -20,7 +16,12 @@ const schemeYup = yup.object().shape({
                     return true;
                 }
             }
-        )
+        ),
+    email: yup
+        .string()
+        .email('Invalid email structure!')
+        .required('Empty email field!')
+
 });
 
 export default schemeYup;

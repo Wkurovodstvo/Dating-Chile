@@ -8,6 +8,9 @@
     border: 1px solid $inputBorderColor;
     padding: 4px;
     font-size: 14px;
+    /*&:hover{
+      border: 2px solid $inputHoverBorderColor;
+    }*/
   }
 }
 
@@ -15,6 +18,9 @@
   @include flex-row-end-center;
   flex-direction: row-reverse;
   @include container;
+  label{
+    margin-left: 5px;
+  }
 }
 
 .verticalContainer{
