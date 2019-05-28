@@ -2,23 +2,15 @@ import {PASSWORD_LENGTH} from "../../constants/constants";
 const yup = require('yup');
 
 const schemeYup = yup.object().shape({
-    firstName: yup
+    year: yup
         .string()
-        .required('Empty firstname field!'),
-    lastName: yup
+        .required('Empty birth year field!'),
+    month: yup
         .string()
-        .required('Empty lastname field!'),
-    displayName: yup
+        .required('Empty birth month field!'),
+    day: yup
         .string()
-        .required('Empty displayname field!'),
-    email: yup
-        .string()
-        .required('Empty email field!')
-        .email('Invalid email structure!'),
-    role: yup
-        .string()
-        .required('Select role!')
-        .oneOf(['Customer', 'Creative']),
+        .required('Empty birth day field!'),
     password: yup
         .string()
         .required('Empty password field!')
@@ -30,10 +22,13 @@ const schemeYup = yup.object().shape({
                 return true;
             }
         ),
-    confirmPassword: yup
+    email: yup
         .string()
-        .required('Empty confirm password field!')
-        .oneOf([yup.ref('password')], 'Passwords does not match!')
+        .required('Empty email field!')
+        .email('Invalid email structure!'),
+    nickname: yup
+        .string()
+        .required('Empty account name field!'),
 });
 
 export default schemeYup;

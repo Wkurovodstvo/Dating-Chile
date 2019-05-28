@@ -3,7 +3,7 @@ import style from "./InputRender.module.scss";
 import {Field} from 'redux-form';
 import _ from "lodash";
 import PropTypes from 'prop-types';
-import {GENDER_OPTIONS, INPUT_ORIENTATION} from "../../constants/constants";
+import {INPUT_ORIENTATION, INPUT_SIZE} from "../../constants/constants";
 
 /**
  * Input for redux-form with custom styles
@@ -12,6 +12,7 @@ const ReduxInput = props => {
 
     const {type, component, values, name, morph, label, placeholder, value, focus, orientation} = props;
     const {HORIZONTAL} = INPUT_ORIENTATION;
+    const {LARGE} = INPUT_SIZE;
 
     return (
         <div className={_.isEqual(orientation, HORIZONTAL) ? style.horizontalContainer : style.verticalContainer}>
@@ -20,6 +21,7 @@ const ReduxInput = props => {
                    type={type}
                    placeholder={placeholder}
                    component={component}
+                   className={_.isEqual(morph, LARGE) ? style.largeInput : style.smallInput}
                    value={value}>
             {values && values.map(gender => {return <option key={gender} value={gender}>{gender}</option>})}
             </Field>

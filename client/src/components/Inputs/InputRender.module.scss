@@ -20,8 +20,24 @@
 .verticalContainer{
   @include flex-col-start-start;
   @include container;
-  input, select{
+  select:not([type='checkbox']){
     width: 100%;
     min-width: $inputMinWidth;
+  }
+  input:not([type='checkbox']){
+    width: 100%;
+    min-width: $inputMinWidth;
+  }
+}
+
+.smallInput {
+  &:not([type='checkbox']){
+    min-height: 30px;
+  }
+}
+
+.largeInput{
+  &:not([type='checkbox']){
+    min-height: 37px;
   }
 }

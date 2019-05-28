@@ -1,0 +1,41 @@
+@import "../../../sass/variables";
+@import "../../../sass/mixins";
+
+.container{
+  @include flex-row-center-start;
+  color: white;
+  label{
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+  select{
+    font-size: 16px;
+    line-height: 28px;
+  }
+  .col{
+    @include flex-col-start-start;
+    width: 385px;
+    padding: 0 7px;
+    >:last-child{
+      margin-top: 10px;
+    }
+  }
+  .row{
+    @include flex-row-between-center;
+    width: 100%;
+    select{
+      min-width: 100%;
+    }
+    >:first-child{
+      margin-right: 5px;
+    }
+    >:last-child{
+      margin-left: 5px;
+    }
+  }
+  .submitButton{
+    @include submitButton;
+    width: 100%;
+  }
+}

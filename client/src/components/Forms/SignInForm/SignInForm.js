@@ -4,7 +4,7 @@ import {reduxForm} from 'redux-form';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import ReduxInput from "../../Inputs/ReduxInput";
-import {INPUT_ORIENTATION} from "../../../constants/constants";
+import {INPUT_ORIENTATION, INPUT_SIZE} from "../../../constants/constants";
 
 /**
  * Form for sign in into account
@@ -12,6 +12,7 @@ import {INPUT_ORIENTATION} from "../../../constants/constants";
 const SignInForm = props => {
 
     const {HORIZONTAL} = INPUT_ORIENTATION;
+    const {SMALL} = INPUT_SIZE;
 
     return (
         <div className={style.container}>
@@ -21,10 +22,12 @@ const SignInForm = props => {
                     <ReduxInput type={"text"}
                                 component={"input"}
                                 placeholder={"Email"}
+                                morph={SMALL}
                                 name={"email"}/>
                     <ReduxInput type={"checkbox"}
                                 name={"remember"}
                                 label={"Remember data"}
+                                morph={SMALL}
                                 component={"input"}
                                 orientation={HORIZONTAL}/>
                 </div>
@@ -32,6 +35,7 @@ const SignInForm = props => {
                     <ReduxInput type={"text"}
                                 component={"input"}
                                 placeholder={"Password"}
+                                morph={SMALL}
                                 name={"password"}/>
                     <p>Forgot password?</p>
                 </div>

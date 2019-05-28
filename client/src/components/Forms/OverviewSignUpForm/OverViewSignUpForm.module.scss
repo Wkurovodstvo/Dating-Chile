@@ -34,14 +34,6 @@
     margin: 0 15px;
   }
   .submitButton{
-    @include flex-row-center-center;
-    flex: 1;
-    background-color: $orangeTheme;
-    color: white;
-    min-width: $inputMinWidth;
-    line-height: normal;
-    border-radius: 3px;
-    padding: 5px;
-    font-size: 19px;
+    @include submitButton;
   }
 }
