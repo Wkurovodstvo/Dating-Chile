@@ -38,7 +38,7 @@ const SignInForm = props => {
                 <button type="button" onClick={toggleSignIn}>¿Ya tienes un perfil?</button>
             </div>
             <div className={props.signInBarStatus ? style.containerExpanded : style.containerHidden}>
-                <h6 className={style.hideMobile}>If you already have a profile</h6>
+                <h6 className={style.hideMobile}>Si ya tienes un Perfil</h6>
                 <div className={style.inputRow}>
                     <ReduxInput type={"text"}
                                 component={"input"}

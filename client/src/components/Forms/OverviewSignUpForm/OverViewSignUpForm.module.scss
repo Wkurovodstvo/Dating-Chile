@@ -2,36 +2,93 @@
 @import "../../../sass/variables";
 
 .container{
-  @include flex-col-start-start;
+  @include flex-col-start-center;
   color: white;
   h3{
     margin-bottom: 32px;
     font-size: 27px;
     font-weight: 700;
     line-height: 37px;
+    @media screen and (max-width: 640px){
+      font-size: 22px;
+      line-height: 30px;
+    }
   }
   h4{
     margin-top: 100px;
     font-size: 23px;
     line-height: 32px;
+    text-align: center;
+    @media screen and (max-width: 823px){
+      padding: 0 40px;
+    }
+    @media screen and (max-width: 640px){
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 25px;
+      padding: 0 20px;
+    }
   }
   label{
     font-size: 19px;
     font-weight: 700;
     line-height: 28px;
+    @media screen and (max-width: 640px){
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
   }
   select{
     font-size: 16px;
     line-height: 28px;
+    @media screen and (max-width: 640px){
+      font-size: 14px;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  .content{
+    @include flex-row-center-center;
+    @media screen and (max-width: 823px){
+      @include flex-col-around-center;
+      width: 100%;
+      padding: 0 50px;
+    }
+    @media screen and (max-width: 640px){
+      @include flex-col-around-center;
+      padding: 0;
+      >:last-child{
+        >:last-child{
+          margin-top: 20px;
+        }
+      }
+    }
   }
   .row{
     @include flex-row-center-end;
     width: 100%;
+    @media screen and(max-width: 823px){
+      margin-bottom: 15px;
+    }
+    @media screen and(max-width: 640px){
+      @include flex-col-around-center;
+      padding: 0 15px;
+      >:last-child{
+        margin-top: 10px;
+      }
+    }
   }
   .col{
     @include flex-col-start-start;
     flex: 1;
     margin: 0 15px;
+    @media screen and(max-width: 640px){
+      @include flex-row-center-center;
+      width: 100%;
+      padding: 0 15px;
+      margin: 0 0 15px 0;
+    }
   }
   .submitButton{
     @include submitButton;

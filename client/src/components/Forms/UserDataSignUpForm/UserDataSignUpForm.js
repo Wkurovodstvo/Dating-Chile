@@ -38,63 +38,72 @@ const UserDataSignUpForm = props => {
 
     return (
         <div className={style.container}>
-            <div className={style.col}>
-                <ReduxInput component={"input"}
-                            name={"nickname"}
-                            label={"Nombre de Usuario"}
-                            morph={LARGE}/>
-                <ReduxInput component={"input"}
-                            name={"password"}
-                            label={"Clave"}
-                            morph={LARGE}/>
-                <ReduxInput component={"select"}
-                            name={"education"}
-                            values={EDUCATION_OPTIONS}
-                            label={"Nivel Educación"}
-                            morph={LARGE}/>
-                <ReduxInput component={"select"}
-                            name={"region"}
-                            values={REGION_OPTIONS}
-                            label={"Región"}
-                            morph={LARGE}/>
-                <ReduxInput component={"input"}
-                            type={"checkbox"}
-                            name={"terms"}
-                            label={"Acepto Condiciones de uso"}
-                            orientation={HORIZONTAL}/>
-            </div>
-            <div className={style.col}>
-                <ReduxInput component={"input"}
-                            name={"email"}
-                            label={"Email"}
-                            morph={LARGE}/>
-                <label>Nacimiento</label>
-                <div className={style.row}>
-                    <ReduxInput component={"select"}
-                                name={"day"}
-                                values={new DateGenerator().generateDays()}
-                                morph={LARGE}/>
-                    <ReduxInput component={"select"}
-                                name={"month"}
-                                values={MONTH_OPTIONS}
-                                morph={LARGE}/>
-                    <ReduxInput component={"select"}
-                                name={"year"}
-                                values={new DateGenerator().generateYears()}
+            <div className={style.headingRow}>
+                <div className={style.col}>
+                    <ReduxInput component={"input"}
+                                name={"nickname"}
+                                label={"Nombre de Usuario"}
                                 morph={LARGE}/>
                 </div>
-                <ReduxInput component={"select"}
-                            name={"children"}
-                            values={CHILDREN_OPTIONS}
-                            label={"Hijos"}
-                            morph={LARGE}/>
-                <ReduxInput component={"select"}
-                            name={"commune"}
-                            values={COMMUNE_OPTIONS}
-                            label={"Comuna"}
-                            morph={LARGE}/>
-                <div className={style.submitButton} onClick={handleRegistrationClick}>Submit</div>
+                <div className={style.col}>
+                    <ReduxInput component={"input"}
+                                name={"email"}
+                                label={"Email"}
+                                morph={LARGE}/>
+                </div>
             </div>
+            <div className={style.row}>
+                <div className={style.col}>
+                    <ReduxInput component={"input"}
+                                name={"password"}
+                                label={"Clave"}
+                                morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"education"}
+                                values={EDUCATION_OPTIONS}
+                                label={"Nivel Educación"}
+                                morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"region"}
+                                values={REGION_OPTIONS}
+                                label={"Región"}
+                                morph={LARGE}/>
+                    <ReduxInput component={"input"}
+                                type={"checkbox"}
+                                name={"terms"}
+                                label={"Acepto Condiciones de uso"}
+                                orientation={HORIZONTAL}/>
+                </div>
+                <div className={style.col}>
+                    <label>Nacimiento</label>
+                    <div className={style.columnRow}>
+                        <ReduxInput component={"select"}
+                                    name={"day"}
+                                    values={new DateGenerator().generateDays()}
+                                    morph={LARGE}/>
+                        <ReduxInput component={"select"}
+                                    name={"month"}
+                                    values={MONTH_OPTIONS}
+                                    morph={LARGE}/>
+                        <ReduxInput component={"select"}
+                                    name={"year"}
+                                    values={new DateGenerator().generateYears()}
+                                    morph={LARGE}/>
+                    </div>
+                    <ReduxInput component={"select"}
+                                name={"children"}
+                                values={CHILDREN_OPTIONS}
+                                label={"Hijos"}
+                                morph={LARGE}/>
+                    <ReduxInput component={"select"}
+                                name={"commune"}
+                                values={COMMUNE_OPTIONS}
+                                label={"Comuna"}
+                                morph={LARGE}/>
+                    <div className={style.submitButton} onClick={handleRegistrationClick}>Submit</div>
+                </div>
+            </div>
+
         </div>
     );
 

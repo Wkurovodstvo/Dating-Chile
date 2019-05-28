@@ -28,11 +28,17 @@
   @include container;
   select:not([type='checkbox']){
     width: 100%;
-    min-width: $inputMinWidth;
+    min-width: 150px;
+    @media screen and (max-width: 667px){
+      min-width: 110px;
+    }
   }
   input:not([type='checkbox']){
     width: 100%;
-    min-width: $inputMinWidth;
+    min-width: 150px;
+    @media screen and (max-width: 667px){
+      min-width: 110px;
+    }
   }
 }
 

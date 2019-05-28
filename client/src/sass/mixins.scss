@@ -155,11 +155,15 @@
   @include flex-row-center-center;
   cursor: pointer;
   flex: 1;
+  width: 100%;
   background-color: $orangeTheme;
   color: white;
-  min-width: $inputMinWidth;
+  min-width: 150px;
   line-height: normal;
   border-radius: 3px;
   padding: 5px;
   font-size: 19px;
+  @media screen and (max-width: 667px){
+    min-width: 110px;
+  }
 }

@@ -28,43 +28,47 @@ const OverViewSignUpForm = props => {
     return (
         <div className={style.container}>
             <div className={style.row}>
-                <h3>Create your profile for free</h3>
+                <h3>Crea tu perfil Gratis</h3>
+            </div>
+            <div className={style.content}>
+                <div className={style.row}>
+                    <div className={style.col}>
+                        <ReduxInput component={"select"}
+                                    name={"gender"}
+                                    values={GENDER_OPTIONS}
+                                    label={"Soy"}
+                                    morph={LARGE}/>
+                    </div>
+                    <div className={style.col}>
+                        <ReduxInput component={"select"}
+                                    name={"purpose"}
+                                    values={PURPOSE_OPTIONS}
+                                    label={"y Busco"}
+                                    morph={LARGE}/>
+                    </div>
+                </div>
+                <div className={style.row}>
+                    <div className={style.col}>
+                        <ReduxInput component={"select"}
+                                    name={"age"}
+                                    values={AGE_OPTIONS}
+                                    label={"entre"}
+                                    morph={LARGE}/>
+                    </div>
+                    <div className={style.col}>
+                        <ReduxInput component={"select"}
+                                    name={"region"}
+                                    values={REGION_OPTIONS}
+                                    label={"que vivan en"}
+                                    morph={LARGE}/>
+                    </div>
+                    <div className={style.col} onClick={handleSubmitClick}>
+                        <div className={style.submitButton}>Siguiente</div>
+                    </div>
+                </div>
             </div>
             <div className={style.row}>
-                <div className={style.col}>
-                    <ReduxInput component={"select"}
-                                name={"gender"}
-                                values={GENDER_OPTIONS}
-                                label={"Soy"}
-                                morph={LARGE}/>
-                </div>
-                <div className={style.col}>
-                    <ReduxInput component={"select"}
-                                name={"purpose"}
-                                values={PURPOSE_OPTIONS}
-                                label={"y Busco"}
-                                morph={LARGE}/>
-                </div>
-                <div className={style.col}>
-                    <ReduxInput component={"select"}
-                                name={"age"}
-                                values={AGE_OPTIONS}
-                                label={"entre"}
-                                morph={LARGE}/>
-                </div>
-                <div className={style.col}>
-                    <ReduxInput component={"select"}
-                                name={"region"}
-                                values={REGION_OPTIONS}
-                                label={"que vivan en"}
-                                morph={LARGE}/>
-                </div>
-                <div className={style.col} onClick={handleSubmitClick}>
-                    <div className={style.submitButton}>Siguiente</div>
-                </div>
-            </div>
-            <div className={style.row}>
-                <h4>Join us to meet people! Today we have over 900,000 registered users</h4>
+                <h4>¡Únete a nosotros para conocer gente! Hoy somos más de 900.000 inscritos</h4>
             </div>
         </div>
     );
