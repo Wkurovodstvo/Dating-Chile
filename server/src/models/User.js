@@ -6,21 +6,35 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.INTEGER,
         },
-        firstName: {
+        gender: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true,
             },
         },
-        lastName: {
+        purpose: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true,
             },
         },
-        displayName: {
+        ageRange: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
+        },
+        region: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
+        },
+        nickName: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -43,9 +57,24 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true,
             },
         },
-        balance: {
-            type: DataTypes.REAL,
-            default: 0
+        birthDate: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
+        },
+        education: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        children: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        commune: {
+            type: DataTypes.STRING,
+            allowNull: true,
         },
         profilePicture: {
             type: DataTypes.STRING,
@@ -54,10 +83,6 @@ module.exports = (sequelize, DataTypes) => {
         role: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        token:{
-            type: DataTypes.STRING,
-            allowNull: true,
         },
         online: {
             type: DataTypes.BOOLEAN,
@@ -75,9 +100,7 @@ module.exports = (sequelize, DataTypes) => {
         },
     });
     User.associate = function (models) {
-        User.hasMany(models.Contest, { foreignKey: 'winnerId', targetKey: 'id' });
-        User.hasMany(models.Contest, { foreignKey: 'userId', targetKey: 'id' });
-        User.hasMany(models.Entry, { as: 'entries', foreignKey: 'creativeId', targetKey: 'id' });
+        User.hasMany(models.Token, { foreignKey: 'userId', targetKey: 'id' });
     };
     return User;
 };

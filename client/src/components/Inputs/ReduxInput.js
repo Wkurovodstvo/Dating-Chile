@@ -10,7 +10,7 @@ import {INPUT_ORIENTATION, INPUT_SIZE} from "../../constants/constants";
  */
 const ReduxInput = props => {
 
-    const {type, component, values, name, morph, label, placeholder, value, focus, orientation} = props;
+    const {type, component, options, name, morph, label, placeholder, value, focus, orientation} = props;
     const {HORIZONTAL} = INPUT_ORIENTATION;
     const {LARGE} = INPUT_SIZE;
 
@@ -24,7 +24,7 @@ const ReduxInput = props => {
                    component={component}
                    className={_.isEqual(morph, LARGE) ? style.largeInput : style.smallInput}
                    value={value}>
-            {values && values.map(gender => {return <option key={gender} value={gender}>{gender}</option>})}
+            {options && options.map(option => {return <option key={option.value} value={option.value}>{option.text ? option.text : option.value}</option>})}
             </Field>
         </div>
     );

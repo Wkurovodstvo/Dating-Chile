@@ -41,7 +41,7 @@ const UserDataSignUpForm = props => {
             <div className={style.headingRow}>
                 <div className={style.col}>
                     <ReduxInput component={"input"}
-                                name={"nickname"}
+                                name={"nickName"}
                                 label={"Nombre de Usuario"}
                                 morph={LARGE}/>
                 </div>
@@ -60,12 +60,12 @@ const UserDataSignUpForm = props => {
                                 morph={LARGE}/>
                     <ReduxInput component={"select"}
                                 name={"education"}
-                                values={EDUCATION_OPTIONS}
+                                options={EDUCATION_OPTIONS}
                                 label={"Nivel Educación"}
                                 morph={LARGE}/>
                     <ReduxInput component={"select"}
                                 name={"region"}
-                                values={REGION_OPTIONS}
+                                options={REGION_OPTIONS}
                                 label={"Región"}
                                 morph={LARGE}/>
                     <ReduxInput component={"input"}
@@ -79,28 +79,28 @@ const UserDataSignUpForm = props => {
                     <div className={style.columnRow}>
                         <ReduxInput component={"select"}
                                     name={"day"}
-                                    values={new DateGenerator().generateDays()}
+                                    options={new DateGenerator().generateDays()}
                                     morph={LARGE}/>
                         <ReduxInput component={"select"}
                                     name={"month"}
-                                    values={MONTH_OPTIONS}
+                                    options={MONTH_OPTIONS}
                                     morph={LARGE}/>
                         <ReduxInput component={"select"}
                                     name={"year"}
-                                    values={new DateGenerator().generateYears()}
+                                    options={new DateGenerator().generateYears()}
                                     morph={LARGE}/>
                     </div>
                     <ReduxInput component={"select"}
                                 name={"children"}
-                                values={CHILDREN_OPTIONS}
+                                options={CHILDREN_OPTIONS}
                                 label={"Hijos"}
                                 morph={LARGE}/>
                     <ReduxInput component={"select"}
                                 name={"commune"}
-                                values={COMMUNE_OPTIONS}
+                                options={COMMUNE_OPTIONS}
                                 label={"Comuna"}
                                 morph={LARGE}/>
-                    <div className={style.submitButton} onClick={handleRegistrationClick}>Submit</div>
+                    <div className={style.submitButton} onClick={handleRegistrationClick}>Finalizar</div>
                 </div>
             </div>
 

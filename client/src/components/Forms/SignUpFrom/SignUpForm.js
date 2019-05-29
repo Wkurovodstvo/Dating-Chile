@@ -8,8 +8,7 @@ import {connect} from "react-redux";
  */
 const SignUpForm = props => {
 
-    //return props.isOverviewCompleted ? <UserDataSignUpForm/> : <OverViewSignUpForm/>
-    return <UserDataSignUpForm/>
+    return props.isOverviewCompleted ? <UserDataSignUpForm/> : <OverViewSignUpForm/>
 
 };
 

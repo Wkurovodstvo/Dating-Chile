@@ -1,23 +1,14 @@
 {
-  "name": "todo-list",
+  "name": "dating-server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "babel-node": "babel-node --presets=latest",
+    "babel-node": "babel-node --presets=@babel/preset-env",
     "start": "nodemon --exec npm run babel-node -- ./src/index.js",
     "test": "jest",
     "build": "babel src -d dist"
   },
-  "babel": {
-    "presets": [
-      "latest"
-    ]
-  },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-jest": "^23.6.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-latest": "^6.24.1",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
@@ -54,6 +45,12 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0"

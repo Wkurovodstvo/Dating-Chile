@@ -1,13 +1,12 @@
-const registerYup = require('../../schemas/registrationValidationScheme');
+const registrationScheme = require('../../schemas/registrationValidationScheme');
 const loginYup = require('../../schemas/loginValidationScheme');
 const cashYup = require('../../schemas/cashValidationScheme');
 
 module.exports.registerValidator = async(req, res, next) => {
     try {
-        await registerYup.validate(req.body);
+        await registrationScheme.validate(req.body);
         next();
-    }
-    catch (err) {
+    } catch (err) {
         next(err);
     }
 };

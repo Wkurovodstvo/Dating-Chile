@@ -29,7 +29,7 @@ const schemeYup = yup.object().shape({
         .string()
         .required('Empty email field!')
         .email('Invalid email structure!'),
-    nickname: yup
+    nickName: yup
         .string()
         .required('Empty account name field!'),
 });

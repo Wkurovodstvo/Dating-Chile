@@ -35,14 +35,14 @@ const OverViewSignUpForm = props => {
                     <div className={style.col}>
                         <ReduxInput component={"select"}
                                     name={"gender"}
-                                    values={GENDER_OPTIONS}
+                                    options={GENDER_OPTIONS}
                                     label={"Soy"}
                                     morph={LARGE}/>
                     </div>
                     <div className={style.col}>
                         <ReduxInput component={"select"}
                                     name={"purpose"}
-                                    values={PURPOSE_OPTIONS}
+                                    options={PURPOSE_OPTIONS}
                                     label={"y Busco"}
                                     morph={LARGE}/>
                     </div>
@@ -50,15 +50,15 @@ const OverViewSignUpForm = props => {
                 <div className={style.row}>
                     <div className={style.col}>
                         <ReduxInput component={"select"}
-                                    name={"age"}
-                                    values={AGE_OPTIONS}
+                                    name={"ageRange"}
+                                    options={AGE_OPTIONS}
                                     label={"entre"}
                                     morph={LARGE}/>
                     </div>
                     <div className={style.col}>
                         <ReduxInput component={"select"}
                                     name={"region"}
-                                    values={REGION_OPTIONS}
+                                    options={REGION_OPTIONS}
                                     label={"que vivan en"}
                                     morph={LARGE}/>
                     </div>

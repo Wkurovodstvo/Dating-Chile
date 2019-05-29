@@ -1,11 +1,12 @@
 import {put} from 'redux-saga/effects';
 import ACTION from '../actions/actiontsTypes';
-//import {register, login} from '../api/rest/restContoller';
+import {registrateUser} from '../api/rest/restContoller';
 
 export function* registrationSaga({fields}) {
     yield put({type: ACTION.USER_REQUEST});
     try{
-        console.log(fields);
+        const {data} = yield registrateUser(fields);
+        console.log(data);
     } catch (e) {
         yield put({type: ACTION.USER_RESPONSE});
     }

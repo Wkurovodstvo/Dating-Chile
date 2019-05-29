@@ -1,12 +1,13 @@
 import ACTION from '../actions/actiontsTypes';
+import {ROLES} from "../constants/constants";
 
 const initialState = {
     isOverviewCompleted: false,
     gender: null,
     purpose: null,
-    age: null,
+    ageRange: null,
     region: null,
-    nickname: null,
+    nickName: null,
     email: null,
     password: null,
     education: null,
@@ -14,7 +15,9 @@ const initialState = {
     commune: null,
     year: null,
     month: null,
-    day: null
+    day: null,
+    deviceId: null,
+    role: ROLES.USER
 };
 
 export default function (state = initialState, action) {

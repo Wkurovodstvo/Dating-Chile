@@ -1,4 +1,4 @@
-import Message from '../models/Message';
+import Message from '../mongoModels/Message';
 import {User} from "../models";
 
 module.exports.findConversations = async (id) => {

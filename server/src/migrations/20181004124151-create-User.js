@@ -8,21 +8,35 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            firstName: {
+            gender: {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
                     notEmpty: true,
                 },
             },
-            lastName: {
+            purpose: {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
                     notEmpty: true,
                 },
             },
-            displayName: {
+            ageRange: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    notEmpty: true,
+                },
+            },
+            region: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    notEmpty: true,
+                },
+            },
+            nickName: {
                 type: Sequelize.STRING,
                 allowNull: false,
                 unique: true,
@@ -45,9 +59,24 @@ module.exports = {
                     notEmpty: true,
                 },
             },
-            balance: {
-                type: Sequelize.REAL,
-                default: 0
+            birthDate: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    notEmpty: true,
+                },
+            },
+            education: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            children: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            commune: {
+                type: Sequelize.STRING,
+                allowNull: true,
             },
             profilePicture: {
                 type: Sequelize.STRING,
@@ -56,10 +85,6 @@ module.exports = {
             role: {
                 type: Sequelize.STRING,
                 allowNull: false,
-            },
-            token: {
-                type: Sequelize.STRING,
-                allowNull: true
             },
             online: {
                 type: Sequelize.BOOLEAN,

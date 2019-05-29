@@ -6,6 +6,8 @@ import SignUpForm from "../../components/Forms/SignUpFrom/SignUpForm";
 
 const HomePage = props => {
 
+    console.log(new DeviceUUID().get())
+
     return(
         <>
             <Dashboard/>

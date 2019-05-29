@@ -1,9 +1,9 @@
 import express from 'express';
-import router from './router/index';
 import cors from 'cors';
 import errors from './utils/errors/errorHandler';
+import router from './router/index';
 import http from 'http';
-import {listen} from './websocket/socketServer';
+//import {listen} from './websocket/socketServer';
 require('./db/mongoose');
 
 const PORT = process.env.PORT || 3000;
@@ -16,8 +16,12 @@ app.use(express.json());
 app.use('/api',router);
 app.use(errors);
 
-const httpServer = http.createServer(app);
+app.listen(PORT, () => {
+    console.log(`server started on ${PORT}`);
+});
+
+/*const httpServer = http.createServer(app);
 httpServer.listen(PORT);
-listen(httpServer);
+listen(httpServer);*/
 
 

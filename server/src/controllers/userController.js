@@ -8,26 +8,33 @@ import {
     BankError
 } from "../utils/errors/customError";
 import fs from "fs";
-import {bankTransaction} from "../utils/bank";
-import {BANK_DATA, IMAGE_URL_DEV, IMAGE_URL_PROD} from "../utils/constants/constants";
 import {getUserFromToken, tokenCreator} from "../utils/tokens/tokenWorker";
+import {getBirthDate} from "../utils/getBirthDate";
 
 module.exports.createUser = async(req,res,next) => {
-    const {firstName, lastName, displayName, password, email, role} = req.body;
+    console.log(req.body);
+    console.log({...req.body});
+    const {gender,purpose,ageRange,region,nickName,email,password,education,children,commune,day,month,year,role,deviceId} = req.body;
+    //const {firstName, lastName, displayName, password, email, role} = req.body;
     try {
         const createdUser = await User.create({
-            firstName,
-            lastName,
-            displayName,
-            password: await bcrypt.hash(password, await bcrypt.genSalt(8)),
+            /*gender,
+            purpose,
+            ageRange,
+            region,
+            nickName,
             email,
-            role
+            education,
+            children,
+            commune,
+            role,*/
+            ...req.body,
+            password: await bcrypt.hash(password, await bcrypt.genSalt(8)),
+            birthDate: getBirthDate(day,month,year)
         }, {returning: true});
-        const token = tokenCreator(createdUser);
+        //const token = tokenCreator(createdUser);
         delete createdUser.dataValues.password;
         res.send({
-            authSuccess: true,
-            token,
             user: createdUser
         });
     }
@@ -36,6 +43,7 @@ module.exports.createUser = async(req,res,next) => {
     }
 };
 
+/*
 module.exports.checkPasswordAndLogin = async (req,res,next) => {
     const {email, password} = req.body;
     try {
@@ -189,4 +197,4 @@ module.exports.cashOut = async (req, res, next) => {
         transaction.rollback();
         next(e);
     }
-};
+};*/

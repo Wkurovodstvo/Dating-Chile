@@ -5,7 +5,7 @@ const fs = require('fs'),
   Sequelize = require('sequelize'),
   basename = path.basename(__filename),
   env = process.env.NODE_ENV || 'development',
-  configPath = env === 'production' ? path.join(__dirname, '..', '..', '..', 'src/server/config/config.json') : path.join(__dirname, '..', 'config/config.json'),
+  configPath = env === 'production' ? path.join(__dirname, '..', '..', '..', 'src/config/config.json') : path.join(__dirname, '..', '..', 'src/config/config.json'),
   config = require(configPath)[ env ],
   db = {};
 
@@ -22,11 +22,11 @@ fs
   })
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file));
-
-    db[ model.name ] = model
+    db[ model.name] = model
   });
 
 Object.keys(db).forEach((modelName) => {
+
   if (db[ modelName ].associate) {
     db[ modelName ].associate(db)
   }

@@ -4,7 +4,7 @@ const schemeYup = yup.object().shape({
     region: yup
         .string()
         .required('Empty region field!'),
-    age: yup
+    ageRange: yup
         .string()
         .required('Empty age field!'),
     purpose: yup

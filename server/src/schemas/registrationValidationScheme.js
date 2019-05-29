@@ -2,15 +2,21 @@ const yup = require('yup');
 const {PASSWORD_LENGTH} = require('../utils/constants/constants');
 
 const schemeYup = yup.object().shape({
-    firstName: yup
+    gender: yup
         .string()
-        .required('Empty firstname field!'),
-    lastName: yup
+        .required('Empty gender field!'),
+    purpose: yup
         .string()
-        .required('Empty lastname field!'),
-    displayName: yup
+        .required('Empty purpose field!'),
+    ageRange: yup
         .string()
-        .required('Empty displayname field!'),
+        .required('Empty age field!'),
+    region: yup
+        .string()
+        .required('Empty region field!'),
+    nickName: yup
+        .string()
+        .required('Empty nickname field!'),
     email: yup
         .string()
         .required('Empty email field!')
@@ -18,7 +24,7 @@ const schemeYup = yup.object().shape({
     role: yup
         .string()
         .required('Select role!')
-        .oneOf(['Customer', 'Creative']),
+        .oneOf(['User', 'Admin', 'Moderator']),
     password: yup
         .string()
         .required('Empty password field!')
@@ -29,11 +35,7 @@ const schemeYup = yup.object().shape({
                 }
                 return true;
             }
-        ),
-    confirmPassword: yup
-        .string()
-        .required('Empty confirm password field!')
-        .oneOf([yup.ref('password')], 'Passwords does not match!')
+        )
 });
 
 module.exports = schemeYup;
