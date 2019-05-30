@@ -3,9 +3,10 @@ import ACTION from '../actions/actiontsTypes';
 const initialState = {
     isFetching: false,
     error: null,
-    token: null,
+    accessToken: null,
+    refreshToken: null,
     user: null,
-    authSuccess: false
+    //authSuccess: false
 };
 
 export default function (state = initialState, action) {
@@ -15,15 +16,14 @@ export default function (state = initialState, action) {
                 ...state,
                 isFetching: true,
                 error: null,
-                authSuccess: false
+                //authSuccess: false
             };
         }
         case ACTION.USER_RESPONSE: {
             return {
                 ...state,
-                token: action.token,
-                user: action.user,
-                authSuccess: action.authSuccess,
+                ...action,
+                //authSuccess: action.authSuccess,
                 isFetching: false,
                 error: null,
             };
@@ -31,7 +31,7 @@ export default function (state = initialState, action) {
         case ACTION.USER_ERROR: {
             return {
                 ...state,
-                error: action.error,
+                ...action,
                 isFetching: false,
             };
         }
@@ -45,7 +45,7 @@ export default function (state = initialState, action) {
         case ACTION.USER_SET_ERROR: {
             return {
                 ...state,
-                error: action.error
+                ...action
             }
         }
         default: {

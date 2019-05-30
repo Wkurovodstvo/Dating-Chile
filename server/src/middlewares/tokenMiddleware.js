@@ -7,12 +7,11 @@ module.exports.getUserDataFromToken = async (req,res, next) => {
     if(authorization && authorization.includes("Bearer")) {
         const auth = authorization.substring("Bearer ".length);
         try {
-            const {role, id} = jwt.verify(auth, process.env.SECRET);
-            req.role = role;
-            req.id = id;
+            const data = jwt.verify(auth, process.env.REFRESH_SECRET);
+            req.data = data;
             next();
         } catch (e) {
-            next(new UnauthorizedError());
+            next(new UnauthorizedError("Access token expired!"));
         }
     }
     else {

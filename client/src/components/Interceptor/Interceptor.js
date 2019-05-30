@@ -1,19 +1,18 @@
-/*
 import axios from "axios";
-import { withRouter } from "react-router";
+import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import {cleanError} from "../../actions/actionCreator";
+import {refreshToken} from "../../api/rest/restContoller";
 
-/!**
+/**
  * @return {null}
- *!/
+ */
 const Element = function Interceptor(props) {
     axios.interceptors.request.use( config => {
-        let token = window.localStorage.getItem('token');
-        if(token) {
-            token = `Bearer ${token}`
+        let accessToken = window.localStorage.getItem('accessToken');
+        if(accessToken) {
+            accessToken = `Bearer ${accessToken}`
         }
-        config.headers.Authorization = token;
+        config.headers.Authorization = accessToken;
         return config;
     },  err => {
         return Promise.reject(err);
@@ -22,8 +21,9 @@ const Element = function Interceptor(props) {
     axios.interceptors.response.use( response => {
         if(response) {
             if (response.data.authSuccess) {
-                const {token} = response.data;
-                window.localStorage.setItem('token', token);
+                const {accessToken, refreshToken} = response.data;
+                window.localStorage.setItem('accessToken', accessToken);
+                window.localStorage.setItem('refreshToken', refreshToken);
                 props.history.push('/');
             }
         }
@@ -32,9 +32,11 @@ const Element = function Interceptor(props) {
         if(err.response && err.response.status) {
             if(err.response.status === 403) {
                 props.history.push('/');
-            }
-            else if(err.response.status === 401) {
-                props.history.push('/login');
+            } else if(err.response.status === 401 && err.response.data === "Access token expired!") {
+                const token = window.localStorage.getItem('refreshToken');
+                refreshToken({token}).then(user => console.log(user));
+            } else if(err.response.status === 401 && err.response.data === "Refresh token expired!") {
+                props.history.push('/');
             }
         }
         return Promise.reject(err);
@@ -47,8 +49,4 @@ const mapStateToProps = (state) => {
     return {error};
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    clean: () => dispatch(cleanError())
-});
-
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Element));*/
+export default withRouter(connect(mapStateToProps,null)(Element));

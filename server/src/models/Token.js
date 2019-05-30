@@ -14,9 +14,13 @@ module.exports = (sequelize, DataTypes) => {
                 model: 'User'
             }
         },
-        authenticationData: {
+        /*authenticationData: {
             type: DataTypes.JSON,
             allowNull: true
+        },*/
+        token: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         isActive: {
             type: DataTypes.BOOLEAN,

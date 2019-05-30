@@ -1,4 +1,4 @@
-import {sequelize, User} from "../models";
+import {sequelize, User, Token} from "../models";
 import bcrypt from 'bcrypt';
 import {
     UnauthorizedError,
@@ -14,28 +14,24 @@ import {getBirthDate} from "../utils/getBirthDate";
 module.exports.createUser = async(req,res,next) => {
     console.log(req.body);
     console.log({...req.body});
-    const {gender,purpose,ageRange,region,nickName,email,password,education,children,commune,day,month,year,role,deviceId} = req.body;
-    //const {firstName, lastName, displayName, password, email, role} = req.body;
+    const {password,day,month,year} = req.body;
     try {
         const createdUser = await User.create({
-            /*gender,
-            purpose,
-            ageRange,
-            region,
-            nickName,
-            email,
-            education,
-            children,
-            commune,
-            role,*/
             ...req.body,
             password: await bcrypt.hash(password, await bcrypt.genSalt(8)),
             birthDate: getBirthDate(day,month,year)
         }, {returning: true});
-        //const token = tokenCreator(createdUser);
+        const {accessToken, refreshToken} = tokenCreator(createdUser);
+        await Token.create({
+           token: refreshToken,
+           userId: createdUser.id
+        });
         delete createdUser.dataValues.password;
         res.send({
-            user: createdUser
+            accessToken,
+            refreshToken,
+            user: createdUser,
+            authSuccess: true
         });
     }
     catch (e) {
@@ -43,24 +39,29 @@ module.exports.createUser = async(req,res,next) => {
     }
 };
 
-/*
+
 module.exports.checkPasswordAndLogin = async (req,res,next) => {
     const {email, password} = req.body;
     try {
-        const foundData = await User.findOne({
+        const foundUser = await User.findOne({
             where: {
                 email
             }
         });
-        if (foundData) {
-            const match = await bcrypt.compare(password, foundData.password);
+        if (foundUser) {
+            const match = await bcrypt.compare(password, foundUser.password);
             if (match) {
-                const token = tokenCreator(foundData);
-                delete foundData.dataValues.password;
+                const {accessToken, refreshToken} = tokenCreator(foundUser);
+                await Token.create({
+                    token: refreshToken,
+                    userId: foundUser.id
+                });
+                delete foundUser.dataValues.password;
                 res.send({
                     authSuccess: true,
-                    token,
-                    user: foundData
+                    accessToken,
+                    refreshToken,
+                    user: foundUser
                 });
             } else {
                 next(new WrongPasswordError());
@@ -73,7 +74,7 @@ module.exports.checkPasswordAndLogin = async (req,res,next) => {
     }
 };
 
-module.exports.getUserFromToken = async (req,res,next) => {
+/*module.exports.getUserFromToken = async (req,res,next) => {
     try {
         const user = await getUserFromToken(req.headers);
         const token = req.headers.authorization.substring("Bearer ".length);

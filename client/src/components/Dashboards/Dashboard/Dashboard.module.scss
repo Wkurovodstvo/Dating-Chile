@@ -1,8 +1,0 @@
-@import "../../../sass/variables";
-@import "../../../sass/mixins";
-
-.container{
-  @include flex-row-center-center;
-  background-color: $blueTheme;
-  color: white;
-}

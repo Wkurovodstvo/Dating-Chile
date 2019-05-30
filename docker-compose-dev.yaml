@@ -21,6 +21,7 @@ services:
     environment:
       NODE_ENV: development
       SECRET: "Access_jwt"
+      REFRESH_SECRET: "Refresh_jwt"
     ports:
       - "3000:3000"
     depends_on:

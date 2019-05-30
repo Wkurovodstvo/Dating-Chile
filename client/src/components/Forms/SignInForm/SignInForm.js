@@ -20,8 +20,6 @@ const SignInForm = props => {
         props.toggleSignIn();
     };
 
-    console.log();
-
     const handleLoginClick = async () => {
         const {fields, loginUser} = props;
         try {

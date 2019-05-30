@@ -19,3 +19,7 @@ export const toggleSignInAction = () => ({
     type: ACTION.UTILITY_TOGGLE_SIGN_IN
 });
 
+export const getUser = () => ({
+    type: ACTION.USER
+});
+

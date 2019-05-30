@@ -12,6 +12,7 @@ import UserPage from "./pages/UserPage/UserPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ConversationPage from "./pages/ConversationPage/ConversationPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import requiresUserCheck from "./components/hoc/requiresUserCheck/requiresUserCheck";
 
 class App extends Component {
 
@@ -19,8 +20,9 @@ class App extends Component {
         return (
             <Router history={browserHistory}>
                 <>
+                    <Interceptor/>
                     <Switch>
-                        <Route exact path="/" component={HomePage}/>
+                        <Route exact path="/" component={requiresUserCheck(HomePage)}/>
                         <Route exact path="/users" component={UsersPage}/>
                         <Route exact path="/users/:id" component={UserPage}/>
                         <Route path="/profile" component={ProfilePage}/>

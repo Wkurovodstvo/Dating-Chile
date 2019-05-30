@@ -1,16 +1,14 @@
 import React from "react";
 import style from "./HomePage.module.scss";
 import {connect} from "react-redux";
-import Dashboard from "../../components/Dashboards/Dashboard/Dashboard";
+import Header from "../../components/Headers/Header/Header";
 import SignUpForm from "../../components/Forms/SignUpFrom/SignUpForm";
 
 const HomePage = props => {
 
-    console.log(new DeviceUUID().get())
-
     return(
         <>
-            <Dashboard/>
+            <Header/>
             <div className={style.container}>
                 <div className={style.imageSection}>
                     <SignUpForm/>
