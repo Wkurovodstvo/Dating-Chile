@@ -24,7 +24,7 @@
     "graphql": "^14.0.2",
     "http-errors": "~1.6.2",
     "import": "^0.0.6",
-    "jest": "^23.6.0",
+    "jest": "^29.3.1",
     "jsonwebtoken": "^8.3.0",
     "jwt-decode": "^2.2.0",
     "less-middleware": "^3.1.0",
